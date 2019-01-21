@@ -1,0 +1,97 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 14px;
+}
+
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+
+header {
+    background-color: rgb(34, 34, 29);
+    text-align: center;
+    padding: 10px 0;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.controls {
+    text-align: center;
+}
+
+.day-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.day-item {
+    border: 1px solid rgb(34, 34, 29);
+    margin: 5px;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.day-toolbar {
+    display: flex;
+    justify-content: right;
+    flex-direction: row-reverse;
+}
+
+.day-tool {
+    margin: 0 3px;
+}
+
+.power-form, .cardio-form {
+    position: fixed;
+    left: 0;
+    top: -100%;
+    background-color: rgb(34, 34, 29, 0.8);
+    height: 100%;
+    width: 100%;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+
+.open-form {
+    top: 0;
+}
+
+.form-close-button {
+    text-align: right;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.close {
+    background-color: #fff;
+    font-size: 22px;
+    margin: 10px;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
+
+.excercise-form {
+    text-align: center;
+    margin: auto;
+}
+
+.day-tool {
+    cursor: pointer;
+}
+
+.excercise {
+    cursor: pointer;
+}
