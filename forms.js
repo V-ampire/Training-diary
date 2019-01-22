@@ -87,8 +87,9 @@ class PowerExForm extends ExForm {
     save(excerciseData) {
         // Создать упражнение, в конструктор передать данные
         excerciseData.type = 'power';
-        const excercise = new PowerExercise(excerciseData);
+        const excercise = new PowerExcercise(excerciseData);
         excercise.addExcercise();
+        excercise.saveExcerciseInLS();
         // Очистить форму
         this.render();
     }
@@ -117,6 +118,7 @@ class CardioExForm extends ExForm {
         excerciseData.type = 'cardio';
         const excercise = new CardioExcercise(excerciseData);
         excercise.addExcercise();
+        excercise.saveExcerciseInLS();
         // Очистить форму
         this.render();
     }

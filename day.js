@@ -7,13 +7,15 @@ class Day {
         this.powerFormContainer = params.powerFormContainer;
         this.cardioFormContainer = params.cardioFormContainer;
         this.daysCount = document.querySelectorAll('.day-item').length;
-        this.dayId = `dayId-${this.daysCount + 1}`;
+        this.dayId = params.dayId || `dayId-${this.daysCount + 1}`;
 
         this.container.onclick = (e) => {
             const dayItem = e.target.closest('.day-item');
+            console.log(dayItem.id);
             if (e.target.closest('.remove-day')) {
                 // Удалить день
                 this.removeDay(dayItem);
+                this.deleteDayFromLS(dayItem);
             } else if (e.target.closest('.add-power-ex')) {
                 // Добавить упражнение
                 const form = new PowerExForm(this.powerFormContainer);
@@ -77,5 +79,31 @@ class Day {
 
     removeDay(dayItem) {
         this.container.removeChild(dayItem);
+    }
+
+    saveDayInLS() {
+        // Сохранить день в LocalStorage
+        let days;
+        if (localStorage.getItem('days') === null) {
+            days = {};
+        } else {
+            days = JSON.parse(localStorage.getItem('days'));
+        }
+        days[this.dayId] = {};
+        localStorage.setItem('days', JSON.stringify(days));
+    }
+
+    deleteDayFromLS(dayItem) {
+        // Удалить день из LocalStorage
+        let days;
+        if (localStorage.getItem('days') === null) {
+            return;
+        } else {
+            days = JSON.parse(localStorage.getItem('days'));
+        }
+        if (days[dayItem.id]) {
+            delete days[dayItem.id];
+            localStorage.setItem('days', JSON.stringify(days));
+        }
     }
 }

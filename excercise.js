@@ -4,6 +4,7 @@
 class Excercise {
     constructor(data) {
         this.data = data;
+        this.dayId = data.excerciseDayId;
         this.dayItem = document.getElementById(data.excerciseDayId);
         this.type = data.type;
 
@@ -35,10 +36,47 @@ class Excercise {
         // Задать HTML упражнения здесь
         return ''
     }
+
+    saveExcerciseInLS() {
+        let days;
+        if (localStorage.getItem('days') === null) {
+            return
+        } else {
+            days = JSON.parse(localStorage.getItem('days'));
+        }
+        this.data.excerciseId = this.excerciseId;
+        days[this.dayId][this.excerciseId] = this.data;
+        localStorage.setItem('days', JSON.stringify(days));
+    }
+
+    deleteExcerciseFromLS() {
+        // Удалить день из LocalStorage
+        let days;
+        if (localStorage.getItem('days') === null) {
+            return;
+        } else {
+            days = JSON.parse(localStorage.getItem('days'));
+        }
+        if (days[this.dayId][this.excerciseId]) {
+            delete days[this.dayId][this.excerciseId];
+            localStorage.setItem('days', JSON.stringify(days));
+        }
+    }
+
+    loadExcerciseFromLS() {
+        const excerciseList = this.dayItem.querySelector('.excercises');
+        // Создать новое упражнение
+        const excircise = document.createElement('tr');
+        excircise.classList.add('excercise', this.type);
+        excircise.innerHTML = this.getHTML();
+        // Присвоить ID и добавить упражнение
+        excircise.setAttribute('id', this.excerciseId);
+        excerciseList.appendChild(excircise);
+    }
 }
 
 
-class PowerExercise extends Excercise {
+class PowerExcercise extends Excercise {
 
     getHTML() {
         // Вернет html упражнения
